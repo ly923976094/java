@@ -9,8 +9,6 @@ public class ObjectDemo {
         System.out.println(od);
         System.out.println(od.toString());
 
-
-
         System.out.println(new Person("liyang","man",12));
     }
 }
