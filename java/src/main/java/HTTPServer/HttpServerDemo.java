@@ -51,14 +51,14 @@ class MyHandler implements HttpHandler {
                 result += temp;
                 //        System.out.println(temp);
             }
-           // System.out.println(result);
+            // System.out.println(result);
             JSONObject reqJson1 = null;  //第一层
             JSONObject reqJson2 = null;  //第二层
             try {
                 reqJson1 = new JSONObject(result);
-                reqJson2 = new JSONObject(new String(reqJson1.getString("data").getBytes(),"utf-8"));
-               // System.out.println(reqJson1.getString("data"));
-                System.out.println("uid:" + reqJson2.getString("uid") + " orderid:" + reqJson2.getString("orderid")+ " item_code:" + reqJson2.getString("item_code"));
+                reqJson2 = new JSONObject(new String(reqJson1.getString("data").getBytes(), "utf-8"));
+                // System.out.println(reqJson1.getString("data"));
+                System.out.println("uid:" + reqJson2.getString("uid") + " orderid:" + reqJson2.getString("orderid") + " item_code:" + reqJson2.getString("item_code"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
