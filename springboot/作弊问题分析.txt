@@ -1,0 +1,12 @@
+1. 电池加速问题
+当电池完成时会调用HarvestStones接口,客户端传来收获该电池的时间(harvestingAtTime), 正常情况下，harvestingAtTime小于或等于当前时间，加速情况下，harvestingAtTime大于当前时间
+
+2. 机器人加速问题
+选择机器人去战斗会调用UpdatePreviousBattleSetup，这里面会有你选择去战斗的机器人,由于这个接口在很多地方调用，导致第一次更改正常情况下会有时间验证错误，
+可以从UpdatePreviousBattleSetup接口中保存要去战斗的机器人，点击战斗会调用FindPlayerToAttack接口取出保存的战斗机器人，获得所有机器人的返回时间与当前时间作对比，正常情况下小于等于当前时间，加速情况下，会大于当前时间
+
+3. 建筑升级加速
+当建筑升级完成时会调用FinishBuilding接口,客户端传来建筑完成的时间(clientExecutionTime), 正常情况下，clientExecutionTime小于或等于当前时间，加速情况下，clientExecutionTime大于当前时间
+
+4. 研究所研究机器人加速
+当机器人升级完成时会调用FinishTroopStage接口,客户端传来收获该电池的时间(finishTimestamp), 正常情况下，finishTimestamp小于或等于当前时间，加速情况下，finishTimestamp大于当前时间
