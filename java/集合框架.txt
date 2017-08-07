@@ -1,0 +1,20 @@
+给非同步的集合加锁
+class MyList{
+   MyList(List list){
+      this.list = list
+   }
+
+   public boolean add(Object obj){
+
+          Synchronized(lock){
+          return list.add(obj)
+       }
+   }
+
+   public boolean remove(Object obj){
+
+         Synchronized(lock){
+                 return list.remove(obj)
+              }
+   }
+}
