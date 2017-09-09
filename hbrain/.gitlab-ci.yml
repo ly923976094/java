@@ -1,0 +1,27 @@
+
+variables:
+  DOCKER_AUTH_CONFIG: "{\"auths\": {\"10.10.150.149:5000\": {\"auth\": \"eXk6MDAwMDAw\"}}}"
+
+stages:
+  - test
+  - package
+
+maven-build:
+  stage: test
+  image: 10.10.150.149:5000/maven:3-jdk-8
+  script:
+    - mvn clean package -B -DskipTests
+  artifacts:
+    paths:
+      - target/*.jar
+
+docker-build:
+  stage: package
+  image: 10.10.150.149:5000/docker:1.12.1
+  script:
+  - tag=$(date +"%Y%m%d-%H%M%S")
+  - image=10.10.150.149:5000/ruyi-ai/hbrain-spring-boot:$tag
+  - docker login -u yy -p 000000 10.10.150.149:5000
+  - docker build -t $image .
+  - docker push $image
+  - echo "$image"
