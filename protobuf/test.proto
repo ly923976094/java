@@ -1,0 +1,9 @@
+package test;
+
+message testReq
+{
+   required int32 id= 1;
+   required string name= 2;
+   required string email= 3;
+   required string friends= 4;
+}
